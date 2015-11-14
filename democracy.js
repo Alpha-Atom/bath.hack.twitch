@@ -35,7 +35,7 @@ module.exports = {
 
     commands = [];
 
-    fs.writeFile("command_list.txt", most_frequent_element[Math.floor((Math.random() *
+    fs.writeFile("res/command_list.txt", most_frequent_element[Math.floor((Math.random() *
            most_frequent_element.length) + 1)], function(err) {
       if (err) {
         return console.log(err);
