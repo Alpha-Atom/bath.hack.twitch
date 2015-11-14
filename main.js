@@ -3,7 +3,7 @@ var checker   = require("./check_valid.js");
 var democracy = require("./democracy.js");
 var anarchy   = require("./anarchy.js");
 var MILLIS    = 1000;
-var mode      = false;
+var mode      = true;
 
 var options = {
   options: {
@@ -40,4 +40,4 @@ client.on("chat", function (channel, user, message, self) {
     }
   }
 });
-//setInterval(democratic_flush_list(), 10*MILLIS);
+setInterval(democracy.process(), 10*MILLIS);
