@@ -1,0 +1,38 @@
+var commands = [];
+
+var democratic_write = function (user, command) {
+	commands.push(command);
+}
+
+var democratic_flush_list = function () {
+	if (commands.length === 0) {
+		return null;
+	}
+	var modes = {};
+
+	var most_frequent_element = [commands[0]];
+	var highest_mode = 1;
+
+	for (var i = 0; i < commands.length; i++) {
+
+		var element = commands[i];
+		if (modes[element] === null) {
+			modes[element] = 1;
+		} else {
+      modes[element] ++;
+		}
+
+    if (modes[element] > highest_mode) {
+      most_frequent_element = [element];
+      highest_mode = modes[element];
+    } else if (modes[element] === highest_mode) {
+      most_frequent_element.push(element);
+    }
+
+  }
+  
+  commands = [];
+
+  return most_frequent_element[Math.floor((Math.random() *
+         most_frequent_element.length) + 1);
+}
