@@ -1,23 +1,23 @@
 var fs = require("fs");
 module.exports = {
-  commands: [],
+  this.commands: [],
 
   write: function (user, command) {
-    commands.push(command);
+    this.commands.push(command);
   },
 
   process: function () {
-    if (commands.length === 0) {
+    if (this.commands.length === 0) {
       return null;
     }
     var modes = {};
 
-    var most_frequent_element = [commands[0]];
+    var most_frequent_element = [this.commands[0]];
     var highest_mode = 1;
 
-    for (var i = 0; i < commands.length; i++) {
+    for (var i = 0; i < this.commands.length; i++) {
 
-      var element = commands[i];
+      var element = this.commands[i];
       if (modes[element] === null) {
         modes[element] = 1;
       } else {
@@ -33,7 +33,7 @@ module.exports = {
 
     }
 
-    commands = [];
+    this.commands = [];
 
     fs.appendFile("res/command_list.txt", most_frequent_element[Math.floor((Math.random() *
            most_frequent_element.length) + 1)] + "\n", function(err) {
