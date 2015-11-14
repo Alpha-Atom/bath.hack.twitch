@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import javafx.application.Application;
@@ -38,7 +40,21 @@ public class SudokuJavaFx extends Application {
 
     private Tile currentTile;
 
-    private Parent createContent() {
+    private Parent createContent(int number) {
+        
+        try {
+            PrintWriter writer = new PrintWriter("./res/current_game.mattsucks", "UTF-8"); //TODO FIX THIS
+            writer.println("game" + number);
+            writer.close();            
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (UnsupportedEncodingException e1) {
+            e1.printStackTrace();
+        } 
+        
+        
+        
+        gameNumber = number;
         Pane root = new Pane();
         root.setPrefSize(W, H);
         root.setStyle("-fx-background-color: black;");
@@ -323,7 +339,7 @@ public class SudokuJavaFx extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(createContent());
+        scene = new Scene(createContent(3));
 
         stage.setScene(scene);
         stage.show();
