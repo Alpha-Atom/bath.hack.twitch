@@ -2,9 +2,13 @@ var fs = require("fs");
 
 module.exports = {
   commands: [],
+  users: [],
 
   write: function (user, command) {
-    this.commands.push(command);
+    if (!~this.users.indexOf(user['display-name'])) {
+      this.users.push(user['display-name']);
+      this.commands.push(command);
+    }
   },
 
   process: function (client, mode) {
@@ -23,7 +27,7 @@ module.exports = {
     for (var i = 0; i < this.commands.length; i++) {
 
       var element = this.commands[i];
-      if (modes[element] === null) {
+      if (modes[element] === undefined) {
         modes[element] = 1;
       } else {
         modes[element] ++;
@@ -39,13 +43,16 @@ module.exports = {
     }
 
     this.commands = [];
+    this.users = [];
 
-    fs.appendFile("res/command_list.txt", most_frequent_element[Math.floor((Math.random() *
-           most_frequent_element.length) + 1)] + "\n", function(err) {
+    var random_number = (Math.random() * most_frequent_element.length);
+    var chosen_command = most_frequent_element[Math.floor(random_number)];
+
+    fs.appendFile("res/command_list.txt", chosen_command + "\n", function(err) {
       if (err) {
         return console.log(err);
       }
-      console.log("Command written");
+      console.log("Command written: " + chosen_command);
     });
   }
 }
