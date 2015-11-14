@@ -137,7 +137,7 @@ public class SudokuJavaFx extends Application {
     int newY = currentTile.y + moveCoord.y;
 
     if((newX < 0 || newX > 8) || (newY < 0 || newY > 8)){
-      System.out.println("well fuck");
+      System.out.println("Co-ordinate out of bound. Movement Ignored");
       return;
     }
 
@@ -181,6 +181,7 @@ public class SudokuJavaFx extends Application {
   }
   
   public boolean hasWon(){
+	  
 	  ArrayList<String> checked = new ArrayList<String>();
 	  for(int y = 0; y < 9; y++){
 		  for(int x = 0; x < 9; x++){
@@ -200,8 +201,31 @@ public class SudokuJavaFx extends Application {
 		  }
 		  checked.clear();
 	  }  
+
+	  for(int x = 0; x < 3; x++){
+		  for(int y = 0; y < 3; y++){
+			  System.out.println(checkGrid(x, y) + " " + x + " " + y);
+			  if(!checkGrid(x, y))
+				  return false;
+		  }
+	  }  
 	  
 	return true;
+  }
+  
+  public boolean checkGrid(int xGrid, int yGrid){
+
+	  ArrayList<String> checked = new ArrayList<String>();
+	  for(int x = 0; x < 3; x++){
+		  for(int y = 0; y < 3; y++){
+			  if(checked.contains(grid[x + 3*xGrid][y + 3*yGrid].text.getText()))
+				  return false;
+			  checked.add(grid[x + 3*xGrid][y + 3*yGrid].text.getText());
+		  }
+	  }  
+	  checked.clear();
+	  
+	  return true;
   }
 
   @Override
