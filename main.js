@@ -4,7 +4,7 @@ var checker   = require("./check_valid.js");
 var democracy = require("./democracy.js");
 var anarchy   = require("./anarchy.js");
 var MILLIS    = 1000;
-var mode      = true;
+var mode      = false;
 var position  = {
   value: 00
 };
