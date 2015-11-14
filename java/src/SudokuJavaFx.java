@@ -233,7 +233,7 @@ public class SudokuJavaFx extends Application {
         
         try {
             PrintWriter writer = new PrintWriter("./res/current_game.mattsucks", "UTF-8"); //TODO FIX THIS
-            writer.println("game" + newGameNumber);
+            writer.println("./res/game" + newGameNumber + ".txt");
             writer.close();            
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
