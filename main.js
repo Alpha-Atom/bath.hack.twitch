@@ -1,4 +1,5 @@
 var irc = require("tmi.js");
+var checker = require("./check_valid.js");
 var MILLIS = 1000;
 var mode = true;
 
@@ -25,13 +26,13 @@ client.connect();
 client.on("chat", function (channel, user, message, self) {
   var message_formatted;
   if (self === false) {
-    message_formated = check_valid_format_command(message);
-    if (message_formated["valid"] === true) {
+    message_formatted = checker.check_valid_format_command(message);
+    if (message_formatted["valid"] === true) {
       if (mode === true) {
-        console.log("Command Processed: " + message_valid["content"]);
+        console.log("Command Processed: " + message_formatted["content"]);
         //democratic_write(user, message_valid["content"]);
       } else {
-        console.log("Command Processed: " + message_valid["content"]);
+        console.log("Command Processed: " + message_formatted["content"]);
         //anarcho_write(user, message_valid["content"]);
       }
     }
