@@ -1,6 +1,7 @@
 *.jar
 java/bin
 *.class
+res/command_list.txt
 tags
 .classpath
 .project
