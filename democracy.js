@@ -11,7 +11,10 @@ module.exports = {
     }
   },
 
-  process: function (client) {
+  process: function (client, mode) {
+    if (mode === false) {
+      return;
+    }
     client.say("#twitchsolvessudoku","Beginning democracy process!");
     if (this.commands.length === 0) {
       return null;
