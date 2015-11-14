@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -46,13 +47,14 @@ public class SudokuJavaFx extends Application {
     FileReader fr;
       fr = new FileReader(file);
       BufferedReader br = new BufferedReader(fr);
-      String line ="";
-      int lineCount = 0;
+      
+	  for(int y = 0; y < 9; y++){
+		  for(int x = 0; x < 9; x++){
+			  initialBoard[x][y] = (char)br.read();
+		  }
+		  br.read();
+	  }  
 
-      while((line = br.readLine()) != null && lineCount < 9){
-        System.out.println(line);
-        initialBoard[lineCount++] = line.toCharArray() ;
-      }
       br.close();
       fr.close();
     } catch (FileNotFoundException e) {
@@ -153,7 +155,6 @@ public class SudokuJavaFx extends Application {
 
 
   public void handleCommand(String command){
-    System.out.println(command);
     switch(command.charAt(0)){
     case 'M':
       switch(command.charAt(1)){
@@ -175,15 +176,32 @@ public class SudokuJavaFx extends Application {
       insert(command.charAt(1));
       break;
     }
+    
+   System.out.println("Game won? " + hasWon());;
   }
   
   public boolean hasWon(){
-	  for(Tile[] tileRow : grid){
-		  for(Tile tile: tileRow){
+	  ArrayList<String> checked = new ArrayList<String>();
+	  for(int y = 0; y < 9; y++){
+		  for(int x = 0; x < 9; x++){
 			  
+			  if(checked.contains(grid[x][y].text.getText())){
+				  return false;
+			  }
+			  checked.add(grid[x][y].text.getText());
 		  }
+		  checked.clear();
 	  }
-	return false;
+	  for(int x = 0; x < 9; x++){
+		  for(int y = 0; y < 9; y++){
+			  if(checked.contains(grid[x][y].text.getText()))
+				  return false;
+			  checked.add(grid[x][y].text.getText());
+		  }
+		  checked.clear();
+	  }  
+	  
+	return true;
   }
 
   @Override
@@ -196,6 +214,7 @@ public class SudokuJavaFx extends Application {
     FileListener fl = new FileListener();
     fl.setApp(this);
     fl.start();
+    
   }
 
   public static void main(String[] args) {
