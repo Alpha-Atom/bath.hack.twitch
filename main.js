@@ -7,10 +7,10 @@ var options = {
         reconnect: true
     },
     identity: {
-        username: "Schmoopiie",
-        password: "oauth:a29b68aede41e25179a66c5978b21437"
+        username: "TwitchSolvesSudoku",
+        password: "oauth:32l6fq5c829gi3hivx6gvv8rod4sji"
     },
-    channels: ["#schmoopiie"]
+    channels: ["#TwitchSolvesSudoku"]
 };
 
 var client = new irc.client(options);

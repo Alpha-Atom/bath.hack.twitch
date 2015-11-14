@@ -1,0 +1,30 @@
+{
+  "name": "twitch-solves-sudoku",
+  "version": "0.0.1",
+  "description": "An IRC bot for TwitchSolvesSudoku",
+  "author": "Matt Coles <mattc65@gmail.com>",
+  "contributors": [
+    "Dan Makepeace-Lane <dan@makepeace-lane.com>"
+  ],
+  "bin": {
+    "twitch-solves-sudoku": "./bin/twitch-solves-sudoku"
+  },
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alpha-Atom/bath.hack.twitch"
+  },
+  "dependencies": {
+    "tmi.js": "*"
+  },
+  "private": true,
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Alpha-Atom/bath.hack.twitch/issues"
+  },
+  "homepage": "https://github.com/Alpha-Atom/bath.hack.twitch",
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  }
+}
