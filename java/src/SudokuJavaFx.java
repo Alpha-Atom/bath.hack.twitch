@@ -44,19 +44,19 @@ public class SudokuJavaFx extends Application {
     private Tile currentTile;
 
     private Parent createContent(int number) {
-        
+
         try {
             PrintWriter writer = new PrintWriter("./res/current_game.mattsucks", "UTF-8"); //TODO FIX THIS
             writer.println("game" + number);
-            writer.close();            
+            writer.close();
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
         } catch (UnsupportedEncodingException e1) {
             e1.printStackTrace();
-        } 
-        
-        
-        
+        }
+
+
+
         gameNumber = number;
         Pane root = new Pane();
         root.setPrefSize(W, H);
@@ -74,7 +74,7 @@ public class SudokuJavaFx extends Application {
                     initialBoard[x][y] = (char)br.read();
                 }
                 br.read();
-            }  
+            }
 
             br.close();
             fr.close();
@@ -153,7 +153,7 @@ public class SudokuJavaFx extends Application {
             if(newText.equals("0"))
                 text.setVisible(false);
         }
-        
+
         public void setReadOnly(boolean read){
             this.readOnly = read;
         }
@@ -180,20 +180,20 @@ public class SudokuJavaFx extends Application {
             currentTile.setTileText(Character.toString(number));
 
         int winValue = hasWonBySolution();
-        
+
         if(winValue == -1){
             winValue = (hasWon() ? 1 : 0);
         }
-        
+
         if(winValue == 1)
             gameWon = true;
-       
+
         if(gameWon){
             System.out.println("HOLY SHIT YOU WON");
             won();
         }
     }
-    
+
     /**
      * YOU
      * WON
@@ -227,22 +227,22 @@ public class SudokuJavaFx extends Application {
 
     public void newGame(){
 
-        
+
         gameWon = false;
         int newGameNumber = (gameNumber++%4)+1;
-        
+
         try {
             PrintWriter writer = new PrintWriter("./res/current_game.mattsucks", "UTF-8"); //TODO FIX THIS
             writer.println("./res/game" + newGameNumber + ".txt");
-            writer.close();            
+            writer.close();
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
         } catch (UnsupportedEncodingException e1) {
             e1.printStackTrace();
-        } 
-        
-        
-        
+        }
+
+
+
         gameNumber = newGameNumber;
 
 
@@ -257,7 +257,7 @@ public class SudokuJavaFx extends Application {
                     initialBoard[x][y] = (char)br.read();
                 }
                 br.read();
-            }  
+            }
 
             for (char [] row : initialBoard){
                 for (char cell : row){
@@ -284,20 +284,20 @@ public class SudokuJavaFx extends Application {
                 tile.setReadOnly( (value == '0') ? false : true);
             }
         }
-        
-        
-        
+
+
+
 
         currentTile = grid[0][0];
 
         currentTile.setSelected(true);
-        
 
-        
+
+
         try {
-            PrintWriter writer = new PrintWriter("./res/command_list.txt"); 
+            PrintWriter writer = new PrintWriter("./res/command_list.txt");
             writer.write("");
-            writer.close();            
+            writer.close();
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -307,33 +307,33 @@ public class SudokuJavaFx extends Application {
         fListener = new FileListener();
         fListener.setApp(this);
         fListener.start();
-       
+
     }
 
     public void handleCommand(String command){
         switch(command.charAt(0)){
-        case 'M':
-            switch(command.charAt(1)){
-            case 'U':
-                move(new Point(0, -1));
+            case 'M':
+                switch(command.charAt(1)){
+                    case 'U':
+                        move(new Point(0, -1));
+                        break;
+                    case 'R':
+                        move(new Point(1, 0));
+                        break;
+                    case 'D':
+                        move(new Point(0, 1));
+                        break;
+                    case 'L':
+                        move(new Point(-1, 0));
+                        break;
+                }
                 break;
-            case 'R':
-                move(new Point(1, 0));
+            case 'I':
+                insert(command.charAt(1));
                 break;
             case 'D':
-                move(new Point(0, 1));
+                insert('0');
                 break;
-            case 'L':
-                move(new Point(-1, 0));
-                break;
-            }
-            break;
-        case 'I':
-            insert(command.charAt(1));
-            break;
-        case 'D':
-            insert('0');
-            break;
         }
 
     }
@@ -343,7 +343,7 @@ public class SudokuJavaFx extends Application {
      * @return an integer, 1 for true, 0 for false, -1 for error
      */
     public int hasWonBySolution(){
-        
+
         try {
             File file = new File("./res/game" + gameNumber + "solution.txt");
             FileReader fr;
@@ -357,7 +357,7 @@ public class SudokuJavaFx extends Application {
                         return 0;
                 }
                 br.read();
-            }  
+            }
 
             br.close();
             fr.close();
@@ -365,11 +365,11 @@ public class SudokuJavaFx extends Application {
             System.err.println("Caught IOException: " + e.getMessage());
             return -1;
         }
-        
+
         return 1;
-        
+
     }
-    
+
     public boolean hasWon(){
 
         if (containsZeroes())
@@ -395,7 +395,7 @@ public class SudokuJavaFx extends Application {
                 checked.add(grid[x][y].text.getText());
             }
             checked.clear();
-        }  
+        }
 
         System.out.println("Grids");
         for(int x = 0; x < 3; x++){
@@ -403,7 +403,7 @@ public class SudokuJavaFx extends Application {
                 if(!checkGrid(x, y))
                     return false;
             }
-        }  
+        }
 
         return true;
     }
@@ -417,7 +417,7 @@ public class SudokuJavaFx extends Application {
                     return false;
                 checked.add(grid[x + 3*xGrid][y + 3*yGrid].text.getText());
             }
-        }  
+        }
         checked.clear();
 
         return true;
