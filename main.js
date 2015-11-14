@@ -5,6 +5,9 @@ var democracy = require("./democracy.js");
 var anarchy   = require("./anarchy.js");
 var MILLIS    = 1000;
 var mode      = true;
+var position  = {
+  value: 00
+};
 
 var options = {
   options: {
