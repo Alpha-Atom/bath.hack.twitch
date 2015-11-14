@@ -1,6 +1,6 @@
 *.jar
 java/bin
-.class
+*.class
 tags
 .classpath
 .project
