@@ -20,7 +20,6 @@ class FileListener extends Thread{
       BufferedInputStream br = new BufferedInputStream(fr);
       String line ="";
       while(true) {
-
         if(br.available() > 0){
           char readChar = (char) br.read();
           System.out.println("Reading Char: " + Character.toString(readChar));
