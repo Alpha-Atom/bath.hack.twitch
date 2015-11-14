@@ -5,6 +5,6 @@ module.exports = {
         return console.log(err);
       }
       console.log("Command written");
-    })
+    });
   }
 }
