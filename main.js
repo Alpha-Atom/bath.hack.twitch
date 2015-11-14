@@ -1,3 +1,5 @@
+var irc = require("tmi.js");
+
 var options = {
     options: {
         debug: true

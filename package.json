@@ -6,9 +6,6 @@
   "contributors": [
     "Dan Makepeace-Lane <dan@makepeace-lane.com>"
   ],
-  "bin": {
-    "twitch-solves-sudoku": "./bin/twitch-solves-sudoku"
-  },
   "main": "main.js",
   "repository": {
     "type": "git",
