@@ -42,12 +42,12 @@ client.on("chat", function (channel, user, message, self) {
     if (message_formatted["valid"] === true) {
       if (mode === true) {
         console.log("Command Processed: " + message_formatted["content"]);
-        democracy.write(user, message_formatted["content"]);
+        democracy.write(user, message_formatted["content"], position);
       } else {
         console.log("Command Processed: " + message_formatted["content"]);
-        anarchy.write(user, message_formatted["content"]);
+        anarchy.write(user, message_formatted["content"], position);
       }
     }
   }
 });
-setInterval(function(){democracy.process(client, mode)}, 15*MILLIS);
+setInterval(function(){democracy.process(client, mode, postion)}, 15*MILLIS);

@@ -48,6 +48,23 @@ module.exports = {
     var random_number = (Math.random() * most_frequent_element.length);
     var chosen_command = most_frequent_element[Math.floor(random_number)];
 
+    switch(chosen_command){
+      case "MU":
+        position.value -= 10;
+        break;
+      case "MD":
+        position.value += 10;
+        break;
+      case "ML":
+        position.value --;
+        break;
+      case "MR":
+        position.value ++;
+        break;
+      default:
+        break;
+    }
+
     fs.appendFile("res/command_list.txt", chosen_command + "\n", function(err) {
       if (err) {
         return console.log(err);
