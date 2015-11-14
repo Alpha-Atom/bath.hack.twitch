@@ -9,7 +9,7 @@ module.exports = {
 
   reset_user_votes_for_mode: function() {
     this.users = [];
-  }
+  },
 
   check_valid_format_command: function (message, user) {
     var command_type = message.match(command_regex);
