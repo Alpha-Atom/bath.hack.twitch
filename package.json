@@ -22,6 +22,8 @@
   "homepage": "https://github.com/Alpha-Atom/bath.hack.twitch",
   "devDependencies": {},
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "client": "java -jar bin/SudokuJavaFx.jar",
+    "start": "node main.js"
   }
 }
