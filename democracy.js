@@ -1,5 +1,5 @@
 module.exports = {
-  var commands = [];
+  commands: [],
 
   write: function (user, command) {
     commands.push(command);
@@ -31,10 +31,10 @@ module.exports = {
       }
 
     }
-    
+
     commands = [];
 
     return most_frequent_element[Math.floor((Math.random() *
-           most_frequent_element.length) + 1);
+           most_frequent_element.length) + 1)];
   }
 }
