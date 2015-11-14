@@ -1,4 +1,4 @@
-var command_regex = /(up|down|left|right|[1-9]|delete)/;
+var command_regex = /(up|down|left|right|[1-9]|delete|anarchy|democracy)/;
 module.exports = {
   check_valid_format_command: function (message) {
     var command_type = message.match(command_regex);
@@ -19,6 +19,12 @@ module.exports = {
         break;
         case "delete":
           command_type = "D";
+        break;
+        case "anarchy":
+          command_type = "modea";
+        break;
+        case "democracy":
+          command_type = "moded";
         break;
         default:
           break;
