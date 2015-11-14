@@ -40,4 +40,4 @@ client.on("chat", function (channel, user, message, self) {
     }
   }
 });
-setInterval(democracy.process(), 10*MILLIS);
+setInterval(function(){democracy.process()}, 10*MILLIS);

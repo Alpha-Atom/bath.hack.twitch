@@ -1,6 +1,6 @@
 var fs = require("fs");
 module.exports = {
-  this.commands: [],
+  commands: [],
 
   write: function (user, command) {
     this.commands.push(command);
