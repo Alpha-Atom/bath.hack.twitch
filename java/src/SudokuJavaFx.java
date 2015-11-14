@@ -72,13 +72,6 @@ public class SudokuJavaFx extends Application {
       }
     }
 
-    for (int y = 0; y < Y_TILES; y++) {
-      for (int x = 0; x < X_TILES; x++) {
-        Tile tile = grid[x][y];
-
-      }
-    }
-
     currentTile = grid[0][0];
 
     currentTile.setSelected(true);
@@ -182,6 +175,15 @@ public class SudokuJavaFx extends Application {
       insert(command.charAt(1));
       break;
     }
+  }
+  
+  public boolean hasWon(){
+	  for(Tile[] tileRow : grid){
+		  for(Tile tile: tileRow){
+			  
+		  }
+	  }
+	return false;
   }
 
   @Override
