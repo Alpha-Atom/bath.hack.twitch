@@ -4,14 +4,14 @@ module.exports = {
   commands: [],
   users: [],
 
-  write: function (user, command) {
+  write: function (user, command, position) {
     if (!~this.users.indexOf(user['display-name'])) {
       this.users.push(user['display-name']);
       this.commands.push(command);
     }
   },
 
-  process: function (client, mode) {
+  process: function (client, mode, position) {
     if (mode === false) {
       return;
     }
