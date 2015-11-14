@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -34,8 +35,10 @@ public class SudokuJavaFx extends Application {
     private Tile[][] grid = new Tile[X_TILES][Y_TILES];
     private char[][] initialBoard = new char[9][9];
     private Scene scene;
-    private boolean gameWon = false;
+    private Stage globalStage;
+    public boolean gameWon = false;
     private int gameNumber = 4;
+    FileListener fListener;
 
 
     private Tile currentTile;
@@ -150,6 +153,10 @@ public class SudokuJavaFx extends Application {
             if(newText.equals("0"))
                 text.setVisible(false);
         }
+        
+        public void setReadOnly(boolean read){
+            this.readOnly = read;
+        }
 
     }
 
@@ -208,8 +215,100 @@ public class SudokuJavaFx extends Application {
         grid[3][5].setTileText("Y");
         grid[4][5].setTileText("A");
         grid[5][5].setTileText("Y");
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        newGame();
+
     }
 
+    public void newGame(){
+
+        
+        gameWon = false;
+        int newGameNumber = (gameNumber++%4)+1;
+        
+        try {
+            PrintWriter writer = new PrintWriter("./res/current_game.mattsucks", "UTF-8"); //TODO FIX THIS
+            writer.println("game" + newGameNumber);
+            writer.close();            
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (UnsupportedEncodingException e1) {
+            e1.printStackTrace();
+        } 
+        
+        
+        
+        gameNumber = newGameNumber;
+
+
+        try {
+            File file = new File("./res/game" + newGameNumber + ".txt");
+            FileReader fr;
+            fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+
+            for(int y = 0; y < 9; y++){
+                for(int x = 0; x < 9; x++){
+                    initialBoard[x][y] = (char)br.read();
+                }
+                br.read();
+            }  
+
+            for (char [] row : initialBoard){
+                for (char cell : row){
+                    System.out.print(cell);
+                }
+                System.out.println();
+            }
+
+            br.close();
+            fr.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("Caught IOException: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Caught IOException: " + e.getMessage());
+        }
+
+
+        for (int y = 0; y < Y_TILES; y++) {
+            for (int x = 0; x < X_TILES; x++) {
+                char value = initialBoard[x][y];
+
+                Tile tile = grid[x][y];
+                tile.setTileText(Character.toString(value));
+                tile.setReadOnly( (value == '0') ? false : true);
+            }
+        }
+        
+        
+        
+
+        currentTile = grid[0][0];
+
+        currentTile.setSelected(true);
+        
+
+        
+        try {
+            PrintWriter writer = new PrintWriter("./res/command_list.txt"); 
+            writer.write("");
+            writer.close();            
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        //Interrupts previous listener, forcing close
+        fListener.interrupt();
+        //Creates new listener for the new game
+        fListener = new FileListener();
+        fListener.setApp(this);
+        fListener.start();
+       
+    }
 
     public void handleCommand(String command){
         switch(command.charAt(0)){
@@ -339,14 +438,15 @@ public class SudokuJavaFx extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(createContent(3));
+        scene = new Scene(createContent(4));
 
-        stage.setScene(scene);
-        stage.show();
+        globalStage = stage;
+        globalStage.setScene(scene);
+        globalStage.show();
 
-        FileListener fl = new FileListener();
-        fl.setApp(this);
-        fl.start();
+        fListener = new FileListener();
+        fListener.setApp(this);
+        fListener.start();
 
     }
 
