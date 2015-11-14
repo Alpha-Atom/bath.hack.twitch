@@ -1,4 +1,5 @@
 var irc       = require("tmi.js");
+var fs        = require("fs");
 var checker   = require("./check_valid.js");
 var democracy = require("./democracy.js");
 var anarchy   = require("./anarchy.js");
@@ -19,6 +20,12 @@ var options = {
   },
   channels: ["#TwitchSolvesSudoku"]
 };
+try {
+  fs.unlinkSync('res/command_list.txt');
+} catch (err) {
+  console.log("Was not able to delete command list.");
+}
+fs.writeFileSync('res/command_list.txt', '');
 
 var client = new irc.client(options);
 var toggle_mode = function() { mode = !mode; };
@@ -40,4 +47,4 @@ client.on("chat", function (channel, user, message, self) {
     }
   }
 });
-setInterval(function(){democracy.process()}, 10*MILLIS);
+setInterval(function(){democracy.process(client)}, 15*MILLIS);

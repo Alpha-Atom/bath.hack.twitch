@@ -1,4 +1,5 @@
 var fs = require("fs");
+
 module.exports = {
   commands: [],
 
@@ -6,7 +7,8 @@ module.exports = {
     this.commands.push(command);
   },
 
-  process: function () {
+  process: function (client) {
+    client.say("#twitchsolvessudoku","Beginning democracy process!");
     if (this.commands.length === 0) {
       return null;
     }
