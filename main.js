@@ -32,10 +32,10 @@ client.on("chat", function (channel, user, message, self) {
     if (message_formatted["valid"] === true) {
       if (mode === true) {
         console.log("Command Processed: " + message_formatted["content"]);
-        democracy.write(user, message_valid["content"]);
+        democracy.write(user, message_formatted["content"]);
       } else {
         console.log("Command Processed: " + message_formatted["content"]);
-        anarchy.write(user, message_valid["content"]);
+        anarchy.write(user, message_formatted["content"]);
       }
     }
   }
