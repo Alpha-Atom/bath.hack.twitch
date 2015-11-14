@@ -23,7 +23,5 @@
   "devDependencies": {},
   "scripts": {
     "test": "test",
-    "client": "java -jar java/bin/SudokuJavaFx.jar",
-    "start": "node main.js"
   }
 }
