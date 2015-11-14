@@ -1,11 +1,11 @@
 module.exports = {
   var commands = [];
 
-  democratic_write: function (user, command) {
+  write: function (user, command) {
     commands.push(command);
   },
 
-  democratic_flush_list: function () {
+  process: function () {
     if (commands.length === 0) {
       return null;
     }

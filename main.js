@@ -1,7 +1,9 @@
-var irc = require("tmi.js");
-var checker = require("./check_valid.js");
-var MILLIS = 1000;
-var mode = true;
+var irc       = require("tmi.js");
+var checker   = require("./check_valid.js");
+var democracy = require("./democracy.js");
+var anarchy   = require("./anarchy.js");
+var MILLIS    = 1000;
+var mode      = false;
 
 var options = {
   options: {
@@ -30,10 +32,10 @@ client.on("chat", function (channel, user, message, self) {
     if (message_formatted["valid"] === true) {
       if (mode === true) {
         console.log("Command Processed: " + message_formatted["content"]);
-        //democratic_write(user, message_valid["content"]);
+        democracy.write(user, message_valid["content"]);
       } else {
         console.log("Command Processed: " + message_formatted["content"]);
-        //anarcho_write(user, message_valid["content"]);
+        anarchy.write(user, message_valid["content"]);
       }
     }
   }
