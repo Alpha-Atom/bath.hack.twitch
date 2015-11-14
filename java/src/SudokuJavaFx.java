@@ -42,7 +42,7 @@ public class SudokuJavaFx extends Application {
 
 
 		try {
-		File file = new File("game1.txt");
+		File file = new File("../res/game1.txt");
 		FileReader fr;
 			fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
@@ -155,7 +155,7 @@ public class SudokuJavaFx extends Application {
 	private void insert(char number){
 		if(!currentTile.readOnly)
 			currentTile.setTileText(Character.toString(number));
-		
+
 	}
 
 
@@ -189,7 +189,7 @@ public class SudokuJavaFx extends Application {
 		scene = new Scene(createContent());
 
 		stage.setScene(scene);
-		stage.show();      
+		stage.show();
 
 		FileListener fl = new FileListener();
 		fl.setApp(this);
