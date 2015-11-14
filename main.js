@@ -25,7 +25,7 @@ client.connect();
 client.on("chat", function (channel, user, message, self) {
   var message_formatted;
   if (self === false) {
-    message_formated = false; // = check_valid_format_command(message);
+    message_formated = check_valid_format_command(message);
     if (message_formated["valid"] === true) {
       if (mode === true) {
         console.log("Command Processed: " + message_valid["content"]);
