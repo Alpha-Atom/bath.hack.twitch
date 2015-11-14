@@ -1,7 +1,7 @@
 var fs = require("fs");
 module.exports = {
   write: function (user, command) {
-    fs.writeFile("res/command_list.txt", command, function(err) {
+    fs.writeFile("res/command_list.txt", command + "\n", function(err) {
       if (err) {
         return console.log(err);
       }
