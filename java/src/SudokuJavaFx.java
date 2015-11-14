@@ -42,7 +42,7 @@ public class SudokuJavaFx extends Application {
 
 
 		try {
-		File file = new File("../res/game1.txt");
+		File file = new File("../../res/game1.txt");
 		FileReader fr;
 			fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
