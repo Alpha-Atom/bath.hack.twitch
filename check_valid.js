@@ -4,7 +4,7 @@ var votes = {
   "anarchy":   2,
   "democracy": 2,
 };
-var timer_commands = false;
+var timeout_command = false;
 module.exports = {
   mode: false,
   users: [],
