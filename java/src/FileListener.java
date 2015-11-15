@@ -28,7 +28,7 @@ class FileListener extends Thread{
                         app.handleCommand(line);
                         line = "";
                         try {
-                            Thread.sleep(1000);
+                            Thread.sleep(100);
                         } catch (InterruptedException e) {
                             System.out.println("Sleep interrupted");
                             break;
