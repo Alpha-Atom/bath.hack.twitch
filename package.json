@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "tmi.js": "*",
-    "jsonfile": "*"
+    "jquery": "*"
   },
   "private": true,
   "license": "MIT",
@@ -23,6 +23,6 @@
   "homepage": "https://github.com/Alpha-Atom/bath.hack.twitch",
   "devDependencies": {},
   "scripts": {
-    "test": "test",
+    "test": "test"
   }
 }
