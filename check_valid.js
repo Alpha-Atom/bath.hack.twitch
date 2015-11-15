@@ -14,14 +14,13 @@ var bar = new ProgressBar('  :title [:bar] :percent', {
   });
 
 var forward = function(tick_amount) { 
-  process.stdout.write('\033[2J');
-    bar.tick(tick_amount, { title: 'To Anarchy: ' });
+    process.stdout.write('\033[2J');
+    if (!this.mode) {
+      bar.tick(tick_amount, { title: 'Anarchy'});
+    } else {
+     bar.tick(tick_amount, { title: 'Democracy'});
+    }
   };
-
-var backward = function (tick_amount) {
-    bar.tick(-tick_amount, { title: 'To Democracy' });
-  };
-
 
 var timeout_command = false;
 module.exports = {
@@ -56,12 +55,10 @@ module.exports = {
           if (!~this.users.indexOf(user['display-name'])) {
             votes["anarchy"] += 1;
             this.users.push(user['display-name']);
-            if (((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"])) > 0.3) {
+            if (((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"])) > 0.4) {
               this.mode = false;
             }
-          
-          forward(((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"]) * 100) - bar.curr);
-
+            forward(((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"]) * 100) - bar.curr);
           }
         break;
         case "democracy":
@@ -71,6 +68,7 @@ module.exports = {
             if (((votes["democracy"]) / (votes["anarchy"] + votes["democracy"])) > 0.5) {
               this.mode = true;
             }
+            forward(((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"]) * 100) - bar.curr); 
           }
         break;
         case "!score":
