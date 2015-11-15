@@ -36,7 +36,7 @@ module.exports = {
             votes["anarchy"] += 1;
             this.users.push(user['display-name']);
             console.log(votes["anarchy"]);
-            if (((anarchy - democracy) / (anarchy + democracy)) > 0.6) {
+            if (((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"])) > 0.6) {
               this.mode = false;
             }
           }
@@ -46,7 +46,7 @@ module.exports = {
             votes["democracy"] += 1;
             this.users.push(user['display-name']);
             console.log(votes["democracy"]);
-            if (((democracy - anarchy) / (anarchy + democracy)) > 0.8) {
+            if (((votes["democracy"]) / (votes["anarchy"] + votes["democracy"])) > 0.8) {
               this.mode = true;
             }
           }
