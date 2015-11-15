@@ -19,7 +19,7 @@ var options = {
   },
   identity: {
     username: "TwitchSolvesSudoku",
-    password: "oauth:32l6fq5c829gi3hivx6gvv8rod4sji"
+    password: "oauth:d25xs9dmdz2glaoesdm7kn20l10o1l"
   },
   channels: ["#TwitchSolvesSudoku"]
 };
