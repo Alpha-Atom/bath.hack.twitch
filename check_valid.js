@@ -52,6 +52,7 @@ module.exports = {
           command_type = "D";
         break;
         case "anarchy":
+            console.log("FOUND Anarchy");
           if (!~this.users.indexOf(user)) {
             votes["anarchy"] += 1;
             this.users.push(user["display-name"]);
