@@ -47,7 +47,7 @@ public class SudokuJavaFx extends Application {
         // write the name of the current game in a file, so the node api can access it
         try {
             PrintWriter writer = new PrintWriter("./res/current_game.txt", "UTF-8");
-            writer.println("game" + number);
+            writer.println("./res/game" + number);
             writer.close();
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
@@ -240,7 +240,7 @@ public class SudokuJavaFx extends Application {
         int newGameNumber = (gameNumber++%4)+1;
 
         try {
-            PrintWriter writer = new PrintWriter("./res/current_game.txt", "UTF-8"); //TODO FIX THIS
+            PrintWriter writer = new PrintWriter("./res/current_game.txt", "UTF-8");
             writer.println("./res/game" + newGameNumber);
             writer.close();
         } catch (FileNotFoundException e1) {
@@ -284,7 +284,7 @@ public class SudokuJavaFx extends Application {
                 char value = initialBoard[x][y];
 
                 Tile tile = grid[x][y];
-                tile.setTileText(Character.toString(value));
+                tile.setTileText(Character.toString(value), Color.BLACK);
                 tile.setReadOnly( (value == '0') ? false : true);
             }
         }
