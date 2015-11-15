@@ -39,10 +39,8 @@ module.exports = {
     if (command.startsWith("I")) {
       if (command === correct_command) {
         leaderboard.addScore(user["display-name"], 20);
-        console.log(user["display-name"] + " was awarded 20 points! They now have: " + leaderboard.getScore(user["display-name"], false));
       } else {
         leaderboard.removeScore(user["display-name"], 1);
-        console.log(user["display-name"] + " was deducted 1 points! They now have: " + leaderboard.getScore(user["display-name"], false));
       }
     }
 
