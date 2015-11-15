@@ -241,7 +241,7 @@ public class SudokuJavaFx extends Application {
 
         try {
             PrintWriter writer = new PrintWriter("./res/current_game.txt", "UTF-8"); //TODO FIX THIS
-            writer.println("./res/game" + newGameNumber + ".txt");
+            writer.println("./res/game" + newGameNumber);
             writer.close();
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
@@ -252,7 +252,7 @@ public class SudokuJavaFx extends Application {
         gameNumber = newGameNumber;
 
         try {
-            File file = new File("./res/game" + newGameNumber);
+            File file = new File("./res/game" + newGameNumber + ".txt");
             FileReader fr;
             fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
