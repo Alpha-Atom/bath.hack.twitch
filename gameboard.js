@@ -13,7 +13,7 @@ module.exports = {
     if (this.checkGame() === true) {
       board_tmp = fs.readFileSync(gameboard_name + ".txt") + "";
       gameboard = board_tmp.split("\n");
-      solution = fs.readFileSync(gameboard_name + "solution.txt").split("\n");
+      solution = (fs.readFileSync(gameboard_name + "solution.txt") + "").split("\n");
       leaderboard.saveToFile();
     }
   },
