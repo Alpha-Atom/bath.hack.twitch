@@ -55,7 +55,7 @@ module.exports = {
           if (!~this.users.indexOf(user['display-name'])) {
             votes["anarchy"] += 1;
             this.users.push(user['display-name']);
-            if (((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"])) > 0.4) {
+            if (((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"])) >= 0.6) {
               this.mode = false;
             }
             forward(((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"]) * 100) - bar.curr);
@@ -65,7 +65,7 @@ module.exports = {
           if (!~this.users.indexOf(user['display-name'])) {
             votes["democracy"] += 1;
             this.users.push(user['display-name']);
-            if (((votes["democracy"]) / (votes["anarchy"] + votes["democracy"])) > 0.5) {
+            if (((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"])) <= 0.3) {
               this.mode = true;
             }
             forward(((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"]) * 100) - bar.curr); 
