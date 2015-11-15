@@ -12,7 +12,8 @@
     "url": "https://github.com/Alpha-Atom/bath.hack.twitch"
   },
   "dependencies": {
-    "tmi.js": "*"
+    "tmi.js": "*",
+    "jsonfile": "*"
   },
   "private": true,
   "license": "MIT",
