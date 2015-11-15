@@ -1,6 +1,6 @@
 var ProgressBar = require('progress');
 var leaderboard = require("./leaderboard.js");
-var command_regex = /(up|down|left|right|[1-9]|delete|anarchy|democracy|!score|!leaderboard|meme|memes)/gi;
+var command_regex = /(up|down|left|right|[1-9]|delete|anarchy|democracy|!score|!leaderboard|meme|memes)/;
 var votes = { 
   "anarchy":   2,
   "democracy": 2,
@@ -32,7 +32,7 @@ module.exports = {
   },
 
   check_valid_format_command: function (message, user, client) {
-    var command_type = message.match(command_regex);
+    var command_type = message.toLowerCase().match(command_regex);
     if (command_type !== null) {
       command_type = command_type[0];
       switch (command_type) {
