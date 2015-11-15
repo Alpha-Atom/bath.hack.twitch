@@ -50,7 +50,6 @@ module.exports = {
       if (err) {
         return console.log(err);
       }
-      console.log("Command written");
     });
   }
 }

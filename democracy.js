@@ -85,11 +85,9 @@ module.exports = {
       //update leaderboard
       for (var i = 0; i < this.commands.length; i+=1) {
         if (this.commands[i] === correct_command) {
-          leaderboard.addScore(this.users[i], 5);
-          console.log(this.users[i] + " was awarded 5 points! They now have: " + leaderboard.getScore(this.users[i], false));
+          leaderboard.addScore(this.users[i], 5)
         } else {
           leaderboard.removeScore(this.users[i], 1);
-          console.log(this.users[i] + " was deducted 1 point! They now have: " + leaderboard.getScore(this.users[i], false));
         }
       }
     }
@@ -98,7 +96,6 @@ module.exports = {
       if (err) {
         return console.log(err);
       }
-      console.log("Command written: " + chosen_command);
     });
 
     this.commands = [];

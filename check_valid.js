@@ -1,9 +1,28 @@
+var ProgressBar = require('progress');
 var leaderboard = require("./leaderboard.js");
 var command_regex = /(up|down|left|right|[1-9]|delete|anarchy|democracy|!score|!leaderboard)/;
 var votes = { 
   "anarchy":   2,
   "democracy": 2,
 };
+
+var bar = new ProgressBar('  :title [:bar] :percent', {
+      complete: '='
+    , incomplete: ' '
+    , width: 30
+    , total: 100
+  });
+
+var forward = function(tick_amount) { 
+  process.stdout.write('\033[2J');
+    bar.tick(tick_amount, { title: 'To Anarchy: ' });
+  };
+
+var backward = function (tick_amount) {
+    bar.tick(-tick_amount, { title: 'To Democracy' });
+  };
+
+
 var timeout_command = false;
 module.exports = {
   mode: false,
@@ -37,17 +56,18 @@ module.exports = {
           if (!~this.users.indexOf(user['display-name'])) {
             votes["anarchy"] += 1;
             this.users.push(user['display-name']);
-            console.log(votes["anarchy"]);
             if (((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"])) > 0.3) {
               this.mode = false;
             }
+          
+          forward(((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"]) * 100) - bar.curr);
+
           }
         break;
         case "democracy":
           if (!~this.users.indexOf(user['display-name'])) {
             votes["democracy"] += 1;
             this.users.push(user['display-name']);
-            console.log(votes["democracy"]);
             if (((votes["democracy"]) / (votes["anarchy"] + votes["democracy"])) > 0.5) {
               this.mode = true;
             }

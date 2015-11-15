@@ -72,7 +72,6 @@ module.exports = {
     if (err) {
       return console.error(err);
     }
-    console.log("Successfully wrote leaderboard to file.");
     old_leaderboard = extend(true, {}, leaderboard);
     });
   },
