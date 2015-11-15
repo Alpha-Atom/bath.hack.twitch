@@ -1,5 +1,5 @@
 var jsonfile = require("jsonfile");
-var jQuery = require("jquery");
+var $ = require("jquery");
 var util = require("util");
 
 var leaderboard = {};
