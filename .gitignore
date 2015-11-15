@@ -5,3 +5,4 @@ res/command_list.txt
 tags
 .classpath
 .project
+node_modules/

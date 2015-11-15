@@ -19,7 +19,7 @@ module.exports = {
   },
 
   checkGame: function () {
-    var name_tmp = fs.readFileSync("./res/current_game.txt").replace(/\n/,'').trim();
+    var name_tmp = (fs.readFileSync("./res/current_game.txt") + "").replace(/\n/,'').trim();
     if (name_tmp !== gameboard_name) {
       gameboard_name = name_tmp;
       return true;
