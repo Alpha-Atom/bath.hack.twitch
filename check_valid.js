@@ -1,8 +1,10 @@
-var command_regex = /(up|down|left|right|[1-9]|delete|anarchy|democracy)/;
+var leaderboard = require("./leaderboard.js");
+var command_regex = /(up|down|left|right|[1-9]|delete|anarchy|democracy|!score|!leaderboard)/;
 var votes = { 
   "anarchy":   2,
   "democracy": 2,
 };
+var timeout_command = false;
 module.exports = {
   mode: false,
   users: [],
@@ -11,7 +13,7 @@ module.exports = {
     this.users = [];
   },
 
-  check_valid_format_command: function (message, user) {
+  check_valid_format_command: function (message, user, client) {
     var command_type = message.match(command_regex);
     if (command_type !== null) {
       command_type = command_type[0];
@@ -51,6 +53,14 @@ module.exports = {
             }
           }
         break;
+        case "!score":
+          var score = leaderboard.getScore(user['display-name'], true);
+          if (timeout_command === false) {
+            client.say("#twitchsolvessudoku",user['display-name'] + ", you have accumulated: " + score + ((score === 1) ? " point!" : " points!"));
+            timeout_command = true;
+            setTimeout(function(){timeout_command=false}, 10000);
+          }
+        break;  
         default:
           break;
       }

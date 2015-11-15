@@ -47,18 +47,31 @@ module.exports = {
     var random_number = (Math.random() * most_frequent_element.length);
     var chosen_command = most_frequent_element[Math.floor(random_number)];
 
+    var position_old = position.value;
     switch(chosen_command){
       case "MU":
         position.value -= 10;
+        if ((position.value + "").charAt(0) < 0) {
+          position.value = position_old;
+        }
         break;
       case "MD":
         position.value += 10;
+        if ((position.value + "").charAt(0) > 8) {
+          position.value = position_old;
+        }
         break;
       case "ML":
         position.value --;
+        if ((position.value + "").charAt(1) < 0) {
+          position.value = position_old;
+        }
         break;
       case "MR":
         position.value ++;
+        if ((position.value + "").charAt(1) > 8) {
+          position.value = position_old;
+        }
         break;
       default:
         break;

@@ -1,1 +1,1 @@
-./res/game4
+./res/game1
