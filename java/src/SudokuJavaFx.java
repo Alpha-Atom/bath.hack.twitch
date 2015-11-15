@@ -3,7 +3,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -209,7 +208,7 @@ public class SudokuJavaFx extends Application {
         // Clear the gameboard
         for(int x = 0; x < 9; x++){
             for (int y = 0; y < 9; y++){
-                grid[x][y].setTileText("0");
+                grid[x][y].setTileText("0", Color.WHITE);
             }
         }
 
