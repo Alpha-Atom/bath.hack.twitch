@@ -3,6 +3,7 @@ var leaderboard = require("./leaderboard.js");
 var gameboard = require("./gameboard.js");
 module.exports = {
     write: function (user, command, position) {
+        var position_old = position.value;
         switch(command){
             case "MU":
                 position_old = position.value;
