@@ -4,7 +4,7 @@ var checker   = require("./check_valid.js");
 var democracy = require("./democracy.js");
 var anarchy   = require("./anarchy.js");
 var leaderboard = require("./leaderboard.js");
-var MILLIS    = 1000;
+var SECONDS    = 1000;
 var position  = {
   value: 00
 };
@@ -50,5 +50,5 @@ client.on("chat", function (channel, user, message, self) {
     }
   }
 });
-setInterval(function(){democracy.process(client, checker.mode, position)}, 15*MILLIS);
-setInterval(function(){checker.reset_user_votes_for_mode()}, 60*MILLIS);
+setInterval(function(){democracy.process(client, checker.mode, position)}, 15*SECONDS);
+setInterval(function(){checker.reset_user_votes_for_mode()}, 60*SECONDS);
