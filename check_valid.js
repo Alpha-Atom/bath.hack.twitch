@@ -54,7 +54,6 @@ module.exports = {
           }
         break;
         case "!score":
-        console.log("Matt smells");
           var score = leaderboard.getScore(user['display-name'], true);
           if (timeout_command === false) {
             client.say("#twitchsolvessudoku",user['display-name'] + ", you have accumulated: " + score + ((score === 1) ? " point!" : " points!"));
