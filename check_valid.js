@@ -1,7 +1,7 @@
 var command_regex = /(up|down|left|right|[1-9]|delete|anarchy|democracy)/;
 var votes = { 
-  "anarchy":   10,
-  "democracy": 10,
+  "anarchy":   2,
+  "democracy": 2,
 };
 module.exports = {
   mode: false,
@@ -36,7 +36,7 @@ module.exports = {
             votes["anarchy"] += 1;
             this.users.push(user['display-name']);
             console.log(votes["anarchy"]);
-            if (((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"])) > 0.6) {
+            if (((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"])) > 0.3) {
               this.mode = false;
             }
           }
@@ -46,7 +46,7 @@ module.exports = {
             votes["democracy"] += 1;
             this.users.push(user['display-name']);
             console.log(votes["democracy"]);
-            if (((votes["democracy"]) / (votes["anarchy"] + votes["democracy"])) > 0.8) {
+            if (((votes["democracy"]) / (votes["anarchy"] + votes["democracy"])) > 0.5) {
               this.mode = true;
             }
           }

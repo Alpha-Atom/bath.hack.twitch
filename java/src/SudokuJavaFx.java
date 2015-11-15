@@ -152,6 +152,16 @@ public class SudokuJavaFx extends Application {
                 text.setVisible(false);
         }
 
+        public void setTileText(String newText, Color color){
+            text.setText(newText);
+            text.setFill(color);
+            text.setVisible(true);
+
+            // 0 is the delimeter we use to represent blank tiles
+            if(newText.equals("0"))
+                text.setVisible(false);
+        }
+
         public void setReadOnly(boolean read){
             this.readOnly = read;
         }
@@ -188,7 +198,7 @@ public class SudokuJavaFx extends Application {
             gameWon = true;
 
         if(gameWon){
-            System.out.println("HOLY SHIT YOU WON");
+            System.out.println("You won");
             won();
         }
     }
@@ -202,15 +212,15 @@ public class SudokuJavaFx extends Application {
         }
 
         // Show a win message
-        grid[3][3].setTileText("Y");
-        grid[4][3].setTileText("O");
-        grid[5][3].setTileText("U");
-        grid[3][4].setTileText("W");
-        grid[4][4].setTileText("O");
-        grid[5][4].setTileText("N");
-        grid[3][5].setTileText("Y");
-        grid[4][5].setTileText("A");
-        grid[5][5].setTileText("Y");
+        grid[3][3].setTileText("Y", Color.RED);
+        grid[4][3].setTileText("O", Color.RED);
+        grid[5][3].setTileText("U", Color.RED);
+        grid[3][4].setTileText("W", Color.RED);
+        grid[4][4].setTileText("O", Color.RED);
+        grid[5][4].setTileText("N", Color.RED);
+        grid[3][5].setTileText("Y", Color.RED);
+        grid[4][5].setTileText("A", Color.RED);
+        grid[5][5].setTileText("Y", Color.RED);
 
         // Leave the win message on screen for x seconds
         try {
@@ -296,7 +306,6 @@ public class SudokuJavaFx extends Application {
         fListener = new FileListener();
         fListener.setApp(this);
         fListener.start();
-
     }
 
     public void handleCommand(String command){
