@@ -38,9 +38,9 @@ module.exports = {
 
         if (command.startsWith("I")) {
             if (command === correct_command) {
-                leaderboard.addScore(user["display-name"], 20);
+                leaderboard.addScore(user, 20);
             }  else {
-                leaderboard.removeScore(user["display-name"], 1);
+                leaderboard.removeScore(user, 1);
             }
         }
 

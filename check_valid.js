@@ -2,7 +2,7 @@ var ProgressBar = require('progress');
 var leaderboard = require("./leaderboard.js");
 var command_regex = /(up|down|left|right|[1-9]|delete|anarchy|democracy|!score|!leaderboard|meme|memes)/;
 var votes = { 
-  "anarchy":   2,
+  "anarchy":   1,
   "democracy": 2,
 };
 
@@ -52,9 +52,9 @@ module.exports = {
           command_type = "D";
         break;
         case "anarchy":
-          if (!~this.users.indexOf(user['display-name'])) {
+          if (!~this.users.indexOf(user)) {
             votes["anarchy"] += 1;
-            this.users.push(user['display-name']);
+            this.users.push(user);
             if (((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"])) >= 0.6) {
               this.mode = false;
             }
@@ -62,9 +62,9 @@ module.exports = {
           }
         break;
         case "democracy":
-          if (!~this.users.indexOf(user['display-name'])) {
+          if (!~this.users.indexOf(user)) {
             votes["democracy"] += 1;
-            this.users.push(user['display-name']);
+            this.users.push(user);
             if (((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"])) <= 0.3) {
               this.mode = true;
             }
@@ -72,9 +72,9 @@ module.exports = {
           }
         break;
         case "!score":
-          var score = leaderboard.getScore(user['display-name'], true);
+          var score = leaderboard.getScore(user, true);
           if (timeout_command === false) {
-            client.say("#twitchsolvessudoku",user['display-name'] + ", you have accumulated: " + score + ((score === 1) ? " point!" : " points!"));
+            client.say("#twitchsolvessudoku",user + ", you have accumulated: " + score + ((score === 1) ? " point!" : " points!"));
             timeout_command = true;
             setTimeout(function(){timeout_command=false}, 10000);
           }
