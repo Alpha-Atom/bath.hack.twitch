@@ -13,11 +13,13 @@ var bar = new ProgressBar('  :title [:bar] :percent', {
       total: 100,
   });
 
-var progress_title = "Anarchy";
-
 var forward = function(tick_amount) {
     process.stdout.write('\033[2J');
-    bar.tick(tick_amount, { title: progress_title});
+    if (!this.mode) {
+        bar.tick(tick_amount, { title: 'Anarchy'});
+    } else {
+        bar.tick(tick_amount, { title: 'Democracy'});
+    }
 };
 
 var timeout_command = false;
@@ -55,7 +57,6 @@ module.exports = {
             this.users.push(user["display-name"]);
             if (((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"])) >= 0.6) {
               this.mode = false;
-              progress_title = "Anarchy";
             }
             forward(((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"]) * 100) - bar.curr);
           }
@@ -66,7 +67,6 @@ module.exports = {
             this.users.push(user["display-name"]);
             if (((votes["anarchy"]) / (votes["anarchy"] + votes["display-name"])) <= 0.3) {
               this.mode = true;
-              progress_title = "Democracy";
             }
             forward(((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"]) * 100) - bar.curr);
           }
