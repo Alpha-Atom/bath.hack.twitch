@@ -37,7 +37,7 @@ var client = new irc.client(options);
 client.connect();
 process.stdout.write("\033c");
 
-//checker.check_valid_format_command(anarchy, user, client);
+checker.check_valid_format_command(anarchy, null, client);
 
 client.on("chat", function (channel, user, message, self) {
   var message_formatted;
