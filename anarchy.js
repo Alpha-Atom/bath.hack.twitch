@@ -4,18 +4,31 @@ var gameboard = require("./gameboard.js");
 module.exports = {
   write: function (user, command, position) {
    switch(command){
+      switch(chosen_command){
       case "MU":
         position.value -= 10;
-        break;
+        if ((position.value + "").charAt(0) < 0) {
+          position.value = position_old;
+        }
+      break;
       case "MD":
         position.value += 10;
-        break;
+        if ((position.value + "").charAt(0) > 8) {
+          position.value = position_old;
+        }
+      break;
       case "ML":
         position.value --;
-        break;
+        if ((position.value + "").charAt(1) < 0) {
+          position.value = position_old;
+        }
+      break;
       case "MR":
         position.value ++;
-        break;
+        if ((position.value + "").charAt(1) > 8) {
+          position.value = position_old;
+        }
+      break;
       default:
         break;
     }
