@@ -63,9 +63,9 @@ module.exports = {
         break;
         case "democracy":
           if (!~this.users.indexOf(user)) {
-            votes["display-name"] += 1;
+            votes["democracy"] += 1;
             this.users.push(user);
-            if (((votes["anarchy"]) / (votes["anarchy"] + votes["display-name"])) <= 0.3) {
+            if (((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"])) <= 0.3) {
               this.mode = true;
             }
             forward(((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"]) * 100) - bar.curr);
