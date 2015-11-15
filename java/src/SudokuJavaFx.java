@@ -209,6 +209,7 @@ public class SudokuJavaFx extends Application {
         for(int x = 0; x < 9; x++){
             for (int y = 0; y < 9; y++){
                 grid[x][y].setTileText("0", Color.WHITE);
+                grid[x][y].cell.setFill(Color.WHITE);
             }
         }
 
