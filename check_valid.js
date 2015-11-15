@@ -1,3 +1,4 @@
+var leaderboard = require("./leaderboard.js");
 var command_regex = /(up|down|left|right|[1-9]|delete|anarchy|democracy)/;
 var votes = { 
   "anarchy":   2,
@@ -11,7 +12,7 @@ module.exports = {
     this.users = [];
   },
 
-  check_valid_format_command: function (message, user) {
+  check_valid_format_command: function (message, user, client) {
     var command_type = message.match(command_regex);
     if (command_type !== null) {
       command_type = command_type[0];
@@ -51,6 +52,9 @@ module.exports = {
             }
           }
         break;
+        case "!score":
+          client.say("#twitchsolvessudoku",leaderboard.getScore(user['display-name'], true));
+        break;  
         default:
           break;
       }
