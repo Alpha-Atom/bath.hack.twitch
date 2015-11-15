@@ -43,12 +43,12 @@ checker.check_valid_format_command("anarchy", "bot", client);
 client.on("chat", function (channel, user, message, self) {
   var message_formatted;
   if (self === false) {
-    message_formatted = checker.check_valid_format_command(message, user["display_name"], client);
+    message_formatted = checker.check_valid_format_command(message, user["display-name"], client);
     if (message_formatted["valid"] === true) {
       if (checker.mode === true) {
-        democracy.write(user["display_name"], message_formatted["content"], position);
+        democracy.write(user["display-name"], message_formatted["content"], position);
       } else {
-        anarchy.write(user["display_name"], message_formatted["content"], position);
+        anarchy.write(user["display-name"], message_formatted["content"], position);
       }
     }
   }

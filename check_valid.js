@@ -32,8 +32,6 @@ module.exports = {
   },
 
   check_valid_format_command: function (message, user, client) {
-      // console.log(message);
-      process.stdout.write(message);
     var command_type = message.toLowerCase().match(command_regex);
     if (command_type !== null) {
       command_type = command_type[0];
@@ -54,10 +52,9 @@ module.exports = {
           command_type = "D";
         break;
         case "anarchy":
-            console.log("FOUND Anarchy");
           if (!~this.users.indexOf(user)) {
             votes["anarchy"] += 1;
-            this.users.push(user["display-name"]);
+            this.users.push(user);
             if (((votes["anarchy"]) / (votes["anarchy"] + votes["democracy"])) >= 0.6) {
               this.mode = false;
             }
