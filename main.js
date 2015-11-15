@@ -30,7 +30,7 @@ try {
 }
 fs.writeFileSync('res/command_list.txt', '');
 
-leaderbaord.loadFromFile();
+leaderboard.loadFromFile();
 var client = new irc.client(options);
 
 // Connect the client to the server..
