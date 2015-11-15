@@ -72,9 +72,9 @@ module.exports = {
           }
         break;
         case "!score":
-          var score = leaderboard.getScore(user["display-name"], true);
+          var score = leaderboard.getScore(user, true);
           if (timeout_command === false) {
-            client.say("#twitchsolvessudoku",user["display-name"] + ", you have accumulated: " + score + ((score === 1) ? " point!" : " points!"));
+            client.say("#twitchsolvessudoku",user + ", you have accumulated: " + score + ((score === 1) ? " point!" : " points!"));
             timeout_command = true;
             setTimeout(function(){timeout_command=false}, 10000);
           }
