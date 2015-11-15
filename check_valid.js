@@ -32,6 +32,7 @@ module.exports = {
   },
 
   check_valid_format_command: function (message, user, client) {
+      console.log(message);
     var command_type = message.toLowerCase().match(command_regex);
     if (command_type !== null) {
       command_type = command_type[0];
