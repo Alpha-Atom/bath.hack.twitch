@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "tmi.js": "*",
-    "jquery": "*"
+    "extend": "*"
   },
   "private": true,
   "license": "MIT",

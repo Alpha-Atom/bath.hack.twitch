@@ -1,5 +1,5 @@
 var jsonfile = require("jsonfile");
-var $ = require("jquery");
+var extend = require("extend");
 var util = require("util");
 
 var leaderboard = {};
@@ -73,7 +73,7 @@ module.exports = {
       return console.error(err);
     }
     console.log("Successfully wrote leaderboard to file.");
-    old_leaderboard = $.extend(true, {}, leaderboard);
+    old_leaderboard = extend(true, {}, leaderboard);
     });
   },
 
@@ -83,7 +83,7 @@ module.exports = {
         return console.error(err);
       }
       leaderboard = obj;
-      old_leaderboard = $.extend(true, {}, leaderboard);
+      old_leaderboard = extend(true, {}, leaderboard);
     });
   }
 
