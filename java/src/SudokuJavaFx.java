@@ -38,7 +38,8 @@ public class SudokuJavaFx extends Application {
     private Stage globalStage;
     public boolean gameWon = false;
     private int gameNumber = 4;
-    FileListener fListener;
+    public FileListener fListener;
+    public LockInTimer timer;
 
 
     private Tile currentTile;
@@ -116,7 +117,7 @@ public class SudokuJavaFx extends Application {
             border.setStroke(Color.BLUE);
             border.setFill(Color.BLUE);
             cell.setStroke(Color.LIGHTGRAY);
-            cell.setFill(Color.WHITE);
+            cell.setFill((readOnly) ? Color.LIGHTGRAY : Color.WHITE);
 
             text.setFont(Font.font(18));
             text.setText(Character.toString(value));
@@ -164,6 +165,7 @@ public class SudokuJavaFx extends Application {
 
         public void setReadOnly(boolean read){ 
             this.readOnly = read;
+            cell.setFill((readOnly) ? Color.LIGHTGRAY : Color.WHITE);
         }
 
     }
@@ -306,6 +308,35 @@ public class SudokuJavaFx extends Application {
         fListener = new FileListener();
         fListener.setApp(this);
         fListener.start();
+
+        timer.updateApp(this);
+    }
+    
+    public void lockIn(){
+
+        try {
+            File file = new File("./res/game" + gameNumber + "solution.txt");
+            FileReader fr;
+            fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+
+            //Form win[x][y]
+            for(int y = 0; y < 9; y++){
+                for(int x = 0; x < 9; x++){
+                    if(grid[x][y].text.getText().equals(Character.toString(((char)br.read()))))
+                        grid[x][y].setReadOnly(true);;
+                }
+                br.read();
+            }
+
+            br.close();
+            fr.close();
+        } catch (IOException e) {
+            System.err.println("Caught IOException: " + e.getMessage());
+        }
+        
+        timer.updateApp(this);
+        
     }
 
     public void handleCommand(String command){
@@ -430,7 +461,7 @@ public class SudokuJavaFx extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(createContent(4));
+        scene = new Scene(createContent(3));
 
         globalStage = stage;
         globalStage.setScene(scene);
@@ -439,6 +470,10 @@ public class SudokuJavaFx extends Application {
         fListener = new FileListener();
         fListener.setApp(this);
         fListener.start();
+        
+        timer = new LockInTimer(3*60*1000, this);
+        timer.start();
+        
 
     }
 
