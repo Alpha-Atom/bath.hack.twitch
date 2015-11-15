@@ -1,4 +1,5 @@
 var fs = require("fs");
+var leaderboard = require("./leaderboard.js");
 var gameboard = require("./gameboard.js");
 module.exports = {
   write: function (user, command, position) {
