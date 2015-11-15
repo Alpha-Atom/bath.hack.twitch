@@ -36,7 +36,7 @@ public class SudokuJavaFx extends Application {
     private Scene scene;
     private Stage globalStage;
     public boolean gameWon = false;
-    private int gameNumber = 4;
+    private int gameNumber = 1;
     public FileListener fListener;
     public LockInTimer timer;
 
@@ -460,7 +460,7 @@ public class SudokuJavaFx extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(createContent(3));
+        scene = new Scene(createContent(1));
 
         globalStage = stage;
         globalStage.setScene(scene);
