@@ -45,8 +45,9 @@ public class SudokuJavaFx extends Application {
 
     private Parent createContent(int number) {
 
+        // Save the name of the current game in a file, so the node api can access it
         try {
-            PrintWriter writer = new PrintWriter("./res/current_game.mattsucks", "UTF-8"); //TODO FIX THIS
+            PrintWriter writer = new PrintWriter("./res/current_game.txt", "UTF-8"); //TODO FIX THIS
             writer.println("game" + number);
             writer.close();
         } catch (FileNotFoundException e1) {
