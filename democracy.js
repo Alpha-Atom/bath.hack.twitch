@@ -1,4 +1,6 @@
 var fs = require("fs");
+var leaderboard = require("./leaderboard.js");
+var gameboard = require("./gameboard.js");
 
 module.exports = {
   commands: [],
@@ -42,9 +44,6 @@ module.exports = {
 
     }
 
-    this.commands = [];
-    this.users = [];
-
     var random_number = (Math.random() * most_frequent_element.length);
     var chosen_command = most_frequent_element[Math.floor(random_number)];
 
@@ -65,11 +64,29 @@ module.exports = {
         break;
     }
 
+    var correct_command = null;
+    gameboard.loadGameboard();
+    correct_command = "I" + gameboard.solution[position.charAt(0)].charAt(position.charAt(0));
+
+    if (chosen_command.startsWith("I")) {
+      //update leaderboard
+      for (int i = 0; i < commands.length; i+=1) {
+        if (commands[i] === correct_command) {
+          leaderboard.addScore(users[i], 5);
+        } else {
+          leaderboard.removeScore(users[i], 1);
+        }
+      }
+    }
+
     fs.appendFile("res/command_list.txt", chosen_command + "\n", function(err) {
       if (err) {
         return console.log(err);
       }
       console.log("Command written: " + chosen_command);
     });
+
+    this.commands = [];
+    this.users = [];
   }
 }
