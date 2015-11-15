@@ -7,10 +7,10 @@ var votes = {
 };
 
 var bar = new ProgressBar('  :title [:bar] :percent', {
-      complete: '='
-    , incomplete: ' '
-    , width: 25
-    , total: 100
+      complete: '=',
+      incomplete: ' ',
+      width: 25,
+      total: 100,
   });
 
 var forward = function(tick_amount) { 
@@ -83,14 +83,14 @@ module.exports = {
           if (timeout_command === false) {
             client.say("#twitchsolvessudoku", "Did you mean maymay?");
             timeout_command = true;
-            setTimeout(function(){timeout_command=false}, 10000);
+            setTimeout(function(){timeout_command=false;}, 10000);
           }
         break;
         case "memes":
           if (timeout_command === false) {
             client.say("#twitchsolvessudoku", "Did you mean maymays?");
             timeout_command = true;
-            setTimeout(function(){timeout_command=false}, 10000);
+            setTimeout(function(){timeout_command=false;}, 10000);
           }
         break;
         default:
@@ -110,4 +110,4 @@ module.exports = {
       };
     }
   }
-}
+};
