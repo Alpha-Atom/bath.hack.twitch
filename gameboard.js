@@ -14,6 +14,8 @@ module.exports = {
       board_tmp = fs.readFileSync(gameboard_name + ".txt") + "";
       gameboard = board_tmp.split("\n");
       solution = (fs.readFileSync(gameboard_name + "solution.txt") + "").split("\n");
+      console.dir(solution);
+      console.dir(gameboard);
       leaderboard.saveToFile();
     }
   },
