@@ -66,17 +66,17 @@ module.exports = {
 
     var correct_command = null;
     gameboard.loadGameboard();
-    correct_command = "I" + gameboard.solution[(position.value + "").charAt(0)].charAt((position.value + "").charAt(0));
+    correct_command = "I" + gameboard.solution[(position.value + "").charAt(0)].charAt((position.value + "").charAt(1));
 
     if (chosen_command.startsWith("I")) {
       //update leaderboard
       for (var i = 0; i < this.commands.length; i+=1) {
         if (this.commands[i] === correct_command) {
           leaderboard.addScore(this.users[i], 5);
-          console.log(this.users[i] + " was awarded 5 points! They now have: " + leaderboard.getScore(this.users[i], true));
+          console.log(this.users[i] + " was awarded 5 points! They now have: " + leaderboard.getScore(this.users[i], false));
         } else {
           leaderboard.removeScore(this.users[i], 1);
-          console.log(this.users[i] + " was deducted 1 point! They now have: " + leaderboard.getScore(this.users[i], true));
+          console.log(this.users[i] + " was deducted 1 point! They now have: " + leaderboard.getScore(this.users[i], false));
         }
       }
     }
