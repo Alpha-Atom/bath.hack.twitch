@@ -7,8 +7,8 @@ module.exports = {
   users: [],
 
   write: function (user, command, position) {
-    if (!~this.users.indexOf(user)) {
-      this.users.push(user);
+    if (!~this.users.indexOf(user["display-name"])) {
+      this.users.push(user["display-name"]);
       this.commands.push(command);
     }
   },
