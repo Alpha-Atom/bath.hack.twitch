@@ -4,6 +4,7 @@ var votes = {
   "anarchy":   2,
   "democracy": 2,
 };
+var timer_commands = false;
 module.exports = {
   mode: false,
   users: [],
@@ -54,7 +55,11 @@ module.exports = {
         break;
         case "!score":
           var score = leaderboard.getScore(user['display-name'], true);
-          client.whisper(user['display-name'],"You have accumulated: " + score + ((score === 1) ? " point!" : " points!"));
+          if (timeout_command === false) {
+            client.say("#twitchsolvessudoku",user['display-name'] + ", you have accumulated: " + score + ((score === 1) ? " point!" : " points!"));
+            timeout_command = true;
+            setTimeout(function(){timeout_command=false}, 10000);
+          }
         break;  
         default:
           break;
