@@ -232,7 +232,7 @@ public class SudokuJavaFx extends Application {
         int newGameNumber = (gameNumber++%4)+1;
 
         try {
-            PrintWriter writer = new PrintWriter("./res/current_game.mattsucks", "UTF-8"); //TODO FIX THIS
+            PrintWriter writer = new PrintWriter("./res/current_game.txt", "UTF-8"); //TODO FIX THIS
             writer.println("./res/game" + newGameNumber + ".txt");
             writer.close();
         } catch (FileNotFoundException e1) {
