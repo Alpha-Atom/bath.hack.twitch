@@ -5,24 +5,28 @@ module.exports = {
     write: function (user, command, position) {
         switch(command){
             case "MU":
+                position_old = position.value;
                 position.value -= 10;
                 if ((position.value + "").charAt(0) < 0) {
                     position.value = position_old;
                 }
                 break;
             case "MD":
+                position_old = position.value;
                 position.value += 10;
                 if ((position.value + "").charAt(0) > 8) {
                     position.value = position_old;
                 }
                 break;
             case "ML":
+                position_old = position.value;
                 position.value --;
                 if ((position.value + "").charAt(1) < 0) {
                     position.value = position_old;
                 }
                 break;
             case "MR":
+                position_old = position.value;
                 position.value ++;
                 if ((position.value + "").charAt(1) > 8) {
                     position.value = position_old;
