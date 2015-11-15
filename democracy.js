@@ -66,7 +66,7 @@ module.exports = {
 
     var correct_command = null;
     gameboard.loadGameboard();
-    correct_command = "I" + gameboard.solution[(position + "").charAt(0)].charAt((position + "").charAt(0));
+    correct_command = "I" + gameboard.solution[(position.value + "").charAt(0)].charAt((position.value + "").charAt(0));
 
     if (chosen_command.startsWith("I")) {
       //update leaderboard

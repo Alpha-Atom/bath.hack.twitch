@@ -6,3 +6,4 @@ tags
 .classpath
 .project
 node_modules/
+res/leaderboards.json
