@@ -20,7 +20,7 @@ module.exports = {
     }
 
     var correct_command;
-    gameboard.loadGame();
+    gameboard.loadGameboard();
     correct_command = "I" + gameboard.solution[(position.value + "").charAt(0)].charAt((position.value + "").charAt(1));
 
     if (command.startsWith("I")) {
