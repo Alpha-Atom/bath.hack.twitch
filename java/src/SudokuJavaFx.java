@@ -44,10 +44,9 @@ public class SudokuJavaFx extends Application {
     private Tile currentTile;
 
     private Parent createContent(int number) {
-
-        // Save the name of the current game in a file, so the node api can access it
+        // write the name of the current game in a file, so the node api can access it
         try {
-            PrintWriter writer = new PrintWriter("./res/current_game.txt", "UTF-8"); //TODO FIX THIS
+            PrintWriter writer = new PrintWriter("./res/current_game.txt", "UTF-8");
             writer.println("game" + number);
             writer.close();
         } catch (FileNotFoundException e1) {
@@ -56,27 +55,25 @@ public class SudokuJavaFx extends Application {
             e1.printStackTrace();
         }
 
-
-
         gameNumber = number;
         Pane root = new Pane();
         root.setPrefSize(W, H);
         root.setStyle("-fx-background-color: black;");
 
-
+        // Look for the game file and open it
         try {
             File file = new File("./res/game" + gameNumber + ".txt");
             FileReader fr;
             fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
 
+            // Read in the file char line by line, and char by char
             for(int y = 0; y < 9; y++){
                 for(int x = 0; x < 9; x++){
                     initialBoard[x][y] = (char)br.read();
                 }
                 br.read();
             }
-
             br.close();
             fr.close();
         } catch (FileNotFoundException e) {
@@ -85,19 +82,18 @@ public class SudokuJavaFx extends Application {
             System.err.println("Caught IOException: " + e.getMessage());
         }
 
-
+        // Loop through the gameBoard, adding tiles to the grid
         for (int y = 0; y < Y_TILES; y++) {
             for (int x = 0; x < X_TILES; x++) {
                 char value = initialBoard[x][y];
                 Tile tile = new Tile(x, y, value, (value == '0') ? false : true);
-
                 grid[x][y] = tile;
                 root.getChildren().add(tile);
             }
         }
 
+        // Make the user start position the top left for each game
         currentTile = grid[0][0];
-
         currentTile.setSelected(true);
 
         return root;
@@ -134,9 +130,10 @@ public class SudokuJavaFx extends Application {
         }
 
         public void setSelected(boolean bool){
+            // Only show the border around the currently selected cell
             selected = bool;
-
             border.setVisible(bool);
+
             if(bool){ //Decrease the white cell size, to increase the selected border size
                 cell.setWidth(TILE_SIZE - 6*BORDER_SIZE);
                 cell.setHeight(TILE_SIZE - 6*BORDER_SIZE);
@@ -146,11 +143,11 @@ public class SudokuJavaFx extends Application {
             }
         }
 
-
         public void setTileText(String newText){
             text.setText(newText);
             text.setVisible(true);
 
+            // 0 is the delimeter we use to represent blank tiles
             if(newText.equals("0"))
                 text.setVisible(false);
         }
@@ -170,6 +167,7 @@ public class SudokuJavaFx extends Application {
             return;
         }
 
+        // Update the current tile selection
         currentTile.setSelected(false);
         currentTile = grid[newX][newY];
         currentTile.setSelected(true);
@@ -195,18 +193,15 @@ public class SudokuJavaFx extends Application {
         }
     }
 
-    /**
-     * YOU
-     * WON
-     * YAY
-     */
     public void won(){
+        // Clear the gameboard
         for(int x = 0; x < 9; x++){
             for (int y = 0; y < 9; y++){
                 grid[x][y].setTileText("0");
             }
         }
 
+        // Show a win message
         grid[3][3].setTileText("Y");
         grid[4][3].setTileText("O");
         grid[5][3].setTileText("U");
@@ -217,19 +212,21 @@ public class SudokuJavaFx extends Application {
         grid[4][5].setTileText("A");
         grid[5][5].setTileText("Y");
 
+        // Leave the win message on screen for x seconds
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        newGame();
 
+        // Start a new game
+        newGame();
     }
 
     public void newGame(){
-
-
         gameWon = false;
+
+        // Loop back to game no.1 if game 4 is finished
         int newGameNumber = (gameNumber++%4)+1;
 
         try {
@@ -242,10 +239,7 @@ public class SudokuJavaFx extends Application {
             e1.printStackTrace();
         }
 
-
-
         gameNumber = newGameNumber;
-
 
         try {
             File file = new File("./res/game" + newGameNumber);
@@ -275,7 +269,6 @@ public class SudokuJavaFx extends Application {
             System.err.println("Caught IOException: " + e.getMessage());
         }
 
-
         for (int y = 0; y < Y_TILES; y++) {
             for (int x = 0; x < X_TILES; x++) {
                 char value = initialBoard[x][y];
@@ -286,14 +279,9 @@ public class SudokuJavaFx extends Application {
             }
         }
 
-
-
-
         currentTile = grid[0][0];
 
         currentTile.setSelected(true);
-
-
 
         try {
             PrintWriter writer = new PrintWriter("./res/command_list.txt");
@@ -336,7 +324,6 @@ public class SudokuJavaFx extends Application {
                 insert('0');
                 break;
         }
-
     }
 
     /**
@@ -344,7 +331,6 @@ public class SudokuJavaFx extends Application {
      * @return an integer, 1 for true, 0 for false, -1 for error
      */
     public int hasWonBySolution(){
-
         try {
             File file = new File("./res/game" + gameNumber + "solution.txt");
             FileReader fr;
@@ -372,7 +358,6 @@ public class SudokuJavaFx extends Application {
     }
 
     public boolean hasWon(){
-
         if (containsZeroes())
             return false;
 
@@ -410,7 +395,6 @@ public class SudokuJavaFx extends Application {
     }
 
     public boolean checkGrid(int xGrid, int yGrid){
-
         ArrayList<String> checked = new ArrayList<String>();
         for(int x = 0; x < 3; x++){
             for(int y = 0; y < 3; y++){
@@ -425,7 +409,6 @@ public class SudokuJavaFx extends Application {
     }
 
     public boolean containsZeroes(){
-
         for(int y = 0; y < 9; y++){
             for(int x = 0; x < 9; x++){
                 if(grid[x][y].text.getText() == "0"){
@@ -433,7 +416,6 @@ public class SudokuJavaFx extends Application {
                 }
             }
         }
-
         return false;
     }
 
