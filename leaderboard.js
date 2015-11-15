@@ -82,6 +82,7 @@ module.exports = {
         return console.error(err);
       }
       leaderboard = obj;
+      old_leaderboard = leaderboard;
     });
   }
 
