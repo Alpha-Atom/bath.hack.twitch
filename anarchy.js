@@ -4,7 +4,6 @@ var gameboard = require("./gameboard.js");
 module.exports = {
   write: function (user, command, position) {
    switch(command){
-      switch(chosen_command){
       case "MU":
         position.value -= 10;
         if ((position.value + "").charAt(0) < 0) {
