@@ -3,6 +3,7 @@ var fs        = require("fs");
 var checker   = require("./check_valid.js");
 var democracy = require("./democracy.js");
 var anarchy   = require("./anarchy.js");
+var leaderboard = require("./leaderboard.js");
 var MILLIS    = 1000;
 var position  = {
   value: 00
@@ -29,6 +30,7 @@ try {
 }
 fs.writeFileSync('res/command_list.txt', '');
 
+leaderbaord.loadFromFile();
 var client = new irc.client(options);
 
 // Connect the client to the server..
