@@ -162,7 +162,7 @@ public class SudokuJavaFx extends Application {
                 text.setVisible(false);
         }
 
-        public void setReadOnly(boolean read){
+        public void setReadOnly(boolean read){ 
             this.readOnly = read;
         }
 
