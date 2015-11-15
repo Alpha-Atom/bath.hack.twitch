@@ -1,5 +1,5 @@
 var leaderboard = require("./leaderboard.js");
-var command_regex = /(up|down|left|right|[1-9]|delete|anarchy|democracy)/;
+var command_regex = /(up|down|left|right|[1-9]|delete|anarchy|democracy|!score|!leaderboard)/;
 var votes = { 
   "anarchy":   2,
   "democracy": 2,
@@ -53,7 +53,8 @@ module.exports = {
           }
         break;
         case "!score":
-          client.say("#twitchsolvessudoku",leaderboard.getScore(user['display-name'], true));
+          var score = leaderboard.getScore(user['display-name'], true);
+          client.whisper(user['display-name'],"You have accumulated: " + score + ((score === 1) ? " point!" : " points!"));
         break;  
         default:
           break;
