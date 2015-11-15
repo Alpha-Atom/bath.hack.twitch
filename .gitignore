@@ -8,3 +8,4 @@ tags
 node_modules/
 res/leaderboards.json
 *.swp
+res/current_game.txt

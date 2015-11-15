@@ -9,7 +9,7 @@ var votes = {
 var bar = new ProgressBar('  :title [:bar] :percent', {
       complete: '=',
       incomplete: ' ',
-      width: 23,
+      width: 20,
       total: 100,
   });
 
