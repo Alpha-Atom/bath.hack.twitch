@@ -35,6 +35,7 @@ var client = new irc.client(options);
 
 // Connect the client to the server..
 client.connect();
+process.stdout.write("\033c");
 client.on("chat", function (channel, user, message, self) {
   var message_formatted;
   if (self === false) {
