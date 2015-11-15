@@ -70,7 +70,7 @@ module.exports = {
 
     if (chosen_command.startsWith("I")) {
       //update leaderboard
-      for (int i = 0; i < commands.length; i+=1) {
+      for (var i = 0; i < commands.length; i+=1) {
         if (commands[i] === correct_command) {
           leaderboard.addScore(users[i], 5);
         } else {
