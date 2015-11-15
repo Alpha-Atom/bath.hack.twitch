@@ -42,7 +42,7 @@ module.exports = {
         console.log("\e[32m" +  user["display-name"] + "[0m" + " was awarded 20 points! They now have: " + leaderboard.getScore(user["display-name"], false));
       } else {
         leaderboard.removeScore(user["display-name"], 1);
-        console.log("\e[31m" + user["display-name"] = "[0m" + " was deducted 1 points! They now have: " + leaderboard.getScore(user["display-name"], false));
+        console.log("\e[31m" + user["display-name"] + "[0m" + " was deducted 1 points! They now have: " + leaderboard.getScore(user["display-name"], false));
       }
     }
 
