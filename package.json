@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "tmi.js": "*",
-    "extend": "*"
+    "extend": "*",
+    "progress": "*"
   },
   "private": true,
   "license": "MIT",
