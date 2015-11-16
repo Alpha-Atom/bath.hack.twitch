@@ -1,6 +1,6 @@
 var ProgressBar = require('progress');
 var leaderboard = require("./leaderboard.js");
-var command_regex = /(up|down|left|right|[1-9]|delete|anarchy|democracy|!score|!leaderboard|meme|memes)/;
+var command_regex = /(up|down|left|right|[1-9]|delete|anarchy|democracy|!score|!leaderboard|meme\b|memes)/;
 var votes = {
   "anarchy":   1,
   "democracy": 2,
